@@ -1,4 +1,4 @@
-# Curso Java POO (Módulo 02)
+# Curso Java POO || (Módulo 02)
 ## Programa Desenvolva+ em parceria da Ada com o Mercado Livre.
 
 ### Conteúdo do módulo:
