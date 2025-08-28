@@ -1,4 +1,4 @@
-package exercicio02;
+package exercicios.exercicio02;
 
 public class Circulo implements Forma {
 
