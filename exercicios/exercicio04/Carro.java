@@ -1,4 +1,4 @@
-package exercicio04;
+package exercicios.exercicio04;
 
 public class Carro implements Veiculo {
 
