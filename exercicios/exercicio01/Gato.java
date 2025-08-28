@@ -1,4 +1,4 @@
-package exercicio01;
+package exercicios.exercicio01;
 
 public class Gato implements Animal{
     @Override
