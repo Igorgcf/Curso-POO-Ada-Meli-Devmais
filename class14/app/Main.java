@@ -30,8 +30,20 @@ public class Main {
         }
 
         Map<Department, List<Product>> productsByDepartmentWithStream = order.findAllProductsByDepartmentWithStream();
-        System.out.println("****----Products by Department with Stream, expression lambda and forEach:----****");
+        System.out.println("\n******************************************************************************************************************************************");
+        System.out.println("\n****----Products by Department with Stream, expression lambda and forEach:----****");
         productsByDepartmentWithStream.forEach((department, products) -> {
+            System.out.println("Department: " + department);
+            System.out.println("Products:");
+            products.forEach(System.out::println);
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        });
+
+
+        Map<Department, List<Product>> productsByDepartmentWithStreamAndGroupingBy = order.findAllProductsByDepartmentWithStreamAndGroupingBy();
+        System.out.println("\n******************************************************************************************************************************************");
+        System.out.println("\n****----Products by Department with Stream, expression lambda, forEach and groupingBy:----****");
+        productsByDepartmentWithStreamAndGroupingBy.forEach((department, products) -> {
             System.out.println("Department: " + department);
             System.out.println("Products:");
             products.forEach(System.out::println);
