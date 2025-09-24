@@ -1,0 +1,3 @@
+Conteúdo da aula: Agrupamento de tipos (dados) com a interface Map e a classe HashMap, implementados de duas formas:
+1. Utilizando for clássico (estrutura de repetição) e sem o uso de expressões lambda.
+2. Utilizando forEach (estrutura de repetição) com stream e expressão lambda.
