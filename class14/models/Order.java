@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Order {
 
@@ -43,6 +44,13 @@ public class Order {
                             map.get(department).add(product);
                         },
                         Map::putAll
+                );
+    }
+
+    public Map<Department, List<Product>> findAllProductsByDepartmentWithStreamAndGroupingBy(){
+        return products.stream()
+                .collect(
+                        Collectors.groupingBy(Product::getDepartment)
                 );
     }
 }
