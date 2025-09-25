@@ -10,6 +10,9 @@ public class Order {
 
     private List<Product> products;
 
+    public Order(){
+    }
+
     public Order(List<Product> products) {
         this.products = products;
     }
@@ -53,4 +56,33 @@ public class Order {
                         Collectors.groupingBy(Product::getDepartment)
                 );
     }
-}
+
+    public Double calculateTotalValueWithStreamByDepartment(){
+
+        return products.stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
+
+    }
+    public Map<Department, Double> calculateTotalValueWithStreamAndGroupingByDepartment(){
+
+        return products.stream()
+                .collect(Collectors.groupingBy(Product::getDepartment,
+                        Collectors.summingDouble(Product::getPrice)));
+    }
+
+    public Double calculateTotalValueWithFilterByDepartment(Department department){
+
+        return products.stream()
+                .filter(product -> product.getDepartment() == department)
+                .mapToDouble(Product::getPrice)
+                .sum();
+    }
+
+    public Double calculateTotalValueWithReduce(Department department){
+
+        return products.stream()
+                .filter(product -> product.getDepartment() == department)
+                .map(Product::getPrice)
+                .reduce(0.0, Double::sum);
+    }};
