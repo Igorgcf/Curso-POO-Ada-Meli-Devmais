@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         Order order = getOrder();
+        Order order1 = new Order();
 
         Map<Department, List<Product>> productsByDepartment = order.findAllProductsByDepartment();
 
@@ -49,6 +50,57 @@ public class Main {
             products.forEach(System.out::println);
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
         });
+
+        Double totalValue = order.calculateTotalValueWithStreamByDepartment();
+        System.out.println("\n******************************************************************************************************************************************");
+        System.out.println("\n****----Total value of the order with Stream:----****");
+
+        for (Department department : Department.values()) {
+            double total = productsByDepartment.getOrDefault(department, List.of())
+                    .stream()
+                    .mapToDouble(Product::getPrice)
+                    .sum();
+            System.out.println("Total value for department " + department + ": " + total);
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        }
+
+        Map<Department, Double> totalValueByDepartment = order.calculateTotalValueWithStreamAndGroupingByDepartment();
+        System.out.println("\n******************************************************************************************************************************************");
+        System.out.println("\n****----Total value by Department with Stream and groupingBy:----****");
+        totalValueByDepartment.forEach((department, total) -> {
+            System.out.println("Total value for department " + department + ": " + total);
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        });
+
+
+        Double totalValorByDepartmentElectronics = order.calculateTotalValueWithFilterByDepartment(Department.ELECTRONICS);
+        Double totalValueByDepartmentBookstore = order.calculateTotalValueWithFilterByDepartment(Department.BOOKSTORE);
+        Double totalValueByDepartmentClothing = order.calculateTotalValueWithFilterByDepartment(Department.CLOTHING);
+
+        System.out.println("\n******************************************************************************************************************************************");
+        System.out.println("\n****----Total value by Department with Stream and filter:----****");
+        System.out.println("Total value for department " + Department.ELECTRONICS + ": " + totalValorByDepartmentElectronics);
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Total value for department " + Department.BOOKSTORE + ": " + totalValueByDepartmentBookstore);
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Total value for department " + Department.CLOTHING + ": " + totalValueByDepartmentClothing);
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+
+        Double totalValueWithReduceByDepartmentElectronics = order.calculateTotalValueWithReduce(Department.ELECTRONICS);
+        Double totalValueWithReduceByDepartmentBookstore = order.calculateTotalValueWithReduce(Department.BOOKSTORE);
+        Double totalValueWithReduceByDepartmentClothing = order.calculateTotalValueWithReduce(Department.CLOTHING);
+        System.out.println("\n******************************************************************************************************************************************");
+        System.out.println("\n****----Total value of the order with Stream and reduce:----****");
+
+        System.out.println("Total value for department " + Department.ELECTRONICS + ": " + totalValueWithReduceByDepartmentElectronics);
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Total value for department " + Department.BOOKSTORE + ": " + totalValueWithReduceByDepartmentBookstore);
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Total value for department " + Department.CLOTHING + ": " + totalValueWithReduceByDepartmentClothing);
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+
+        System.out.println("\nTotal value of all departments: ");
+        System.out.println(totalValue);
     }
 
     private static Order getOrder() {
