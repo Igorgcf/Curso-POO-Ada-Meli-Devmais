@@ -101,6 +101,10 @@ public class Main {
 
         System.out.println("\nTotal value of all departments: ");
         System.out.println(totalValue);
+
+        System.out.println("\n******************************************************************************************************************************************");
+        System.out.println("\n****----Total value by Department with Map:----****");
+        Map<Department, Double> totalValueWithMapByDepartment = order.calculateTotalValueWithStreamAndMapByDepartment();
     }
 
     private static Order getOrder() {
