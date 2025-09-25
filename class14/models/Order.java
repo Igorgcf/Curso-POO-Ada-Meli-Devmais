@@ -88,4 +88,20 @@ public class Order {
                 .reduce(0.0, Double::sum);
     }
 
+    public Map<Department, Double> calculateTotalValueWithStreamAndMapByDepartment() {
+        Map<Department, Double> totalValueByDepartment = new HashMap<>();
+
+        for (Product product : products) {
+            Department department = product.getDepartment();
+            totalValueByDepartment.put(department,
+                    totalValueByDepartment.getOrDefault(department, 0.0) + product.getPrice());
+        }
+        for(Department department :Department.values()){
+            totalValueByDepartment.putIfAbsent(department, 0.0);
+            System.out.println("Total value for department " + department + ": " + totalValueByDepartment.get(department));
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        }
+
+        return totalValueByDepartment;
+    }
 }
