@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class Order {
 
     private List<Product> products;
-
-    public Order(){
+    private Map<Department, List<Product>> map;
+    public Order() {
     }
 
     public Order(List<Product> products) {
@@ -21,13 +21,13 @@ public class Order {
         return products;
     }
 
-    public Map<Department, List<Product>> findAllProductsByDepartment(){
+    public Map<Department, List<Product>> findAllProductsByDepartment() {
 
         Map<Department, List<Product>> productsByDepartment = new HashMap<>();
 
-        for(Product product : products){
+        for (Product product : products) {
             Department department = product.getDepartment();
-            if(!productsByDepartment.containsKey(department)){
+            if (!productsByDepartment.containsKey(department)) {
                 productsByDepartment.put(department, new ArrayList<>());
             }
             productsByDepartment.get(department).add(product);
@@ -35,13 +35,13 @@ public class Order {
         return productsByDepartment;
     }
 
-    public Map<Department, List<Product>> findAllProductsByDepartmentWithStream(){
+    public Map<Department, List<Product>> findAllProductsByDepartmentWithStream() {
         return products.stream()
                 .collect(
                         HashMap::new,
                         (map, product) -> {
                             Department department = product.getDepartment();
-                            if(!map.containsKey(department)){
+                            if (!map.containsKey(department)) {
                                 map.put(department, new ArrayList<>());
                             }
                             map.get(department).add(product);
@@ -50,28 +50,29 @@ public class Order {
                 );
     }
 
-    public Map<Department, List<Product>> findAllProductsByDepartmentWithStreamAndGroupingBy(){
+    public Map<Department, List<Product>> findAllProductsByDepartmentWithStreamAndGroupingBy() {
         return products.stream()
                 .collect(
                         Collectors.groupingBy(Product::getDepartment)
                 );
     }
 
-    public Double calculateTotalValueWithStreamByDepartment(){
+    public Double calculateTotalValueWithStreamByDepartment() {
 
         return products.stream()
                 .mapToDouble(Product::getPrice)
                 .sum();
 
     }
-    public Map<Department, Double> calculateTotalValueWithStreamAndGroupingByDepartment(){
+
+    public Map<Department, Double> calculateTotalValueWithStreamAndGroupingByDepartment() {
 
         return products.stream()
                 .collect(Collectors.groupingBy(Product::getDepartment,
                         Collectors.summingDouble(Product::getPrice)));
     }
 
-    public Double calculateTotalValueWithFilterByDepartment(Department department){
+    public Double calculateTotalValueWithFilterByDepartment(Department department) {
 
         return products.stream()
                 .filter(product -> product.getDepartment() == department)
@@ -79,10 +80,12 @@ public class Order {
                 .sum();
     }
 
-    public Double calculateTotalValueWithReduce(Department department){
+    public Double calculateTotalValueWithReduce(Department department) {
 
         return products.stream()
                 .filter(product -> product.getDepartment() == department)
                 .map(Product::getPrice)
                 .reduce(0.0, Double::sum);
-    }};
+    }
+
+}
