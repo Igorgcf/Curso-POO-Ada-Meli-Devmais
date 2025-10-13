@@ -2,3 +2,39 @@ Conteúdo da aula: Agrupamento de tipos (dados) com a interface Map e a classe H
 1. Utilizando for clássico (estrutura de repetição) e sem o uso de expressões lambda.
 2. Utilizando forEach (estrutura de repetição) com stream e expressão lambda.
 3. Utilizando forEach (estrutura de repetição) com stream e expressão lambda e método GroupingBy da classe Collectors.
+
+# 📝 Map, Filter e Reduce: As Funções Essenciais
+
+Este documento explica os três pilares da manipulação de coleções na **Programação Funcional** (`Map`, `Filter`, `Reduce`).
+
+---
+
+## 🚀 O que são Map, Filter e Reduce?
+
+São Funções de Ordem Superior (Higher-Order Functions) usadas para processar dados em coleções (Arrays, Listas) de forma **declarativa** e **imutável** (sem alterar o *array* original).
+
+### 1. `Map` (Transformação)
+
+| Conceito | Descrição |
+| :--- | :--- |
+| **Objetivo** | Transformar cada elemento da lista. |
+| **Retorno** | Uma **nova lista** de **mesmo tamanho**, com os elementos transformados. |
+| **Função** | Recebe o elemento atual e deve retornar o **novo valor** desse elemento. |
+
+### 2. `Filter` (Seleção/Filtro)
+
+| Conceito | Descrição |
+| :--- | :--- |
+| **Objetivo** | Selecionar um subconjunto de elementos da lista. |
+| **Retorno** | Uma **nova lista** contendo apenas os elementos que passaram no teste. |
+| **Função** | Recebe o elemento atual e deve retornar um booleano (`true` para manter, `false` para descartar). |
+
+### 3. `Reduce` (Redução/Agregação)
+
+| Conceito | Descrição |
+| :--- | :--- |
+| **Objetivo** | Reduzir a lista a um **único valor** (soma, média, objeto, etc.). |
+| **Retorno** | Um **único valor** (qualquer tipo: número, string, objeto, outra lista). |
+| **Função** | Recebe o **acumulador** (resultado parcial) e o elemento atual, e deve retornar o **novo valor** do acumulador. |
+
+---
