@@ -1,4 +1,4 @@
-# Curso Java POO (Módulo 03)
+# Curso Java - Módulo 03 - Técnicas de Programação
 ## Programa Desenvolva+ em parceria da Ada com o Mercado Livre.
 
 ### Conteúdo do curso:
